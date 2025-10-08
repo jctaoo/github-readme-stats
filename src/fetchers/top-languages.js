@@ -8,7 +8,7 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
-import { excludeRepositories } from "../common/envs.js";
+import { excludeRepositories, excludeOwner } from "../common/envs.js";
 
 /**
  * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
@@ -159,7 +159,7 @@ const fetchTopLanguages = async (
   let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};
   const allExcludedRepos = [...exclude_repo, ...excludeRepositories];
-  const allExcludedOwners = [...exclude_owner];
+  const allExcludedOwners = [...exclude_owner, ...excludeOwner];
 
   // populate repoToHide map for quick lookup
   // while filtering out
